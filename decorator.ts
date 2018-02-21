@@ -140,16 +140,23 @@ class ModelX extends Car{
 abstract class CarOptions extends Car{
     decoratedCar : Car;
 
+    public abstract getModel() : string;
     public abstract getDescription() : string;
     public abstract cost(): number; 
 }
+
 //crear una opcion real->
 class EnhacedAutoPilot extends CarOptions {
-    decoratedCar : Car;
 
+    decoratedCar : Car;
+    
     constructor(car : Car){
         super(car.model);
         this.decoratedCar = car;
+    }
+
+    public getModel(): string {
+        return this.decoratedCar.getModel() + " ADD + EnhacedAutoPilot";
     }
 
     public getDescription(): string {
@@ -163,7 +170,8 @@ class EnhacedAutoPilot extends CarOptions {
 //crear una opcion real->
 class AutomatedConduction extends CarOptions {
     decoratedCar : Car;
-    modelo : string
+    modelo : string;
+    precio : number;
     constructor(car : Car){
         super(car.model);
         this.decoratedCar = car;
@@ -175,12 +183,17 @@ class AutomatedConduction extends CarOptions {
     public cost(): number {
         return this.decoratedCar.cost() + 3200;
     }
+    public getModel(): string {
+        return this.decoratedCar.getModel() + " ADD + AutomatedConduction";
+    }
 }
 
 let myTesla = new ModelS("75D");
 myTesla.setPrecio(myTesla.getModel());
 myTesla.cost();
-console.log(myTesla.getDescription() + myTesla.getModelDescription(myTesla.getModel()));
+console.log(`Mi TESLA :> ${myTesla.getDescription()}  ${myTesla.getModelDescription(myTesla.getModel())}`);
 console.log(`Mi TESLA :> ${myTesla.getModel()} PRECIO:  ${myTesla.cost()} ${myTesla._euro} `);
 // 
-// myTesla = new EnhacedAutoPilot(myTesla);
+ let carro = new AutomatedConduction(myTesla);
+carro.cost();
+console.log(`MI TESLA ADD: ${carro.getModel()} | ${carro.getDescription()} = ${carro.cost()}  ${myTesla._euro}`);

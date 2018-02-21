@@ -145,6 +145,9 @@ var EnhacedAutoPilot = /** @class */ (function (_super) {
         _this.decoratedCar = car;
         return _this;
     }
+    EnhacedAutoPilot.prototype.getModel = function () {
+        return this.decoratedCar.getModel() + " ADD + EnhacedAutoPilot";
+    };
     EnhacedAutoPilot.prototype.getDescription = function () {
         return this.decoratedCar.getDescription() + ' PLUS>: Enhanced AutoPilot';
     };
@@ -167,12 +170,17 @@ var AutomatedConduction = /** @class */ (function (_super) {
     AutomatedConduction.prototype.cost = function () {
         return this.decoratedCar.cost() + 3200;
     };
+    AutomatedConduction.prototype.getModel = function () {
+        return this.decoratedCar.getModel() + " ADD + AutomatedConduction";
+    };
     return AutomatedConduction;
 }(CarOptions));
 var myTesla = new ModelS("75D");
 myTesla.setPrecio(myTesla.getModel());
 myTesla.cost();
-console.log(myTesla.getDescription() + myTesla.getModelDescription(myTesla.getModel()));
+console.log("Mi TESLA :> " + myTesla.getDescription() + "  " + myTesla.getModelDescription(myTesla.getModel()));
 console.log("Mi TESLA :> " + myTesla.getModel() + " PRECIO:  " + myTesla.cost() + " " + myTesla._euro + " ");
 // 
-// myTesla = new EnhacedAutoPilot(myTesla);
+var carro = new AutomatedConduction(myTesla);
+carro.cost();
+console.log("MI TESLA ADD: " + carro.getModel() + " | " + carro.getDescription() + " = " + carro.cost() + "  " + myTesla._euro);
