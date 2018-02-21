@@ -197,3 +197,13 @@ console.log(`Mi TESLA :> ${myTesla.getModel()} PRECIO:  ${myTesla.cost()} ${myTe
  let carro = new AutomatedConduction(myTesla);
 carro.cost();
 console.log(`MI TESLA ADD: ${carro.getModel()} | ${carro.getDescription()} = ${carro.cost()}  ${myTesla._euro}`);
+
+let myTesla2 = new ModelX("P100D");
+myTesla2.setPrecio(myTesla2.getModel());
+myTesla2.cost();
+console.log(`Mi TESLA :> ${myTesla2.getDescription()}  ${myTesla2.getModelDescription(myTesla2.getModel())}`);
+console.log(`Mi TESLA :> ${myTesla2.getModel()} PRECIO:  ${myTesla2.cost()} ${myTesla2._euro} `);
+// 
+ let carro2 = new EnhacedAutoPilot(myTesla2);
+carro2.cost();
+console.log(`MI TESLA ADD: ${carro2.getModel()} | ${carro2.getDescription()} = ${carro2.cost()}  ${myTesla2._euro}`);
